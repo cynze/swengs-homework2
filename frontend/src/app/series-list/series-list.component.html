@@ -1,0 +1,32 @@
+<div class="series-list">
+  <table mat-table [dataSource]="series">
+    <ng-container matColumnDef="title_series">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let series">{{series.title_series}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="start_year">
+      <th mat-header-cell *matHeaderCellDef>Start Year</th>
+      <td mat-cell *matCellDef="let series">{{series.start_year}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="end_year">
+      <th mat-header-cell *matHeaderCellDef>End Year</th>
+      <td mat-cell *matCellDef="let series">{{series.end_year}}</td>
+    </ng-container>
+
+    <!--
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let series">
+        <button mat-button [routerLink]="'/series-form/' + series.id">Edit</button>
+        <button mat-button (click)="deleteSeries(series)">Delete</button>
+      </td>
+    </ng-container>-->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+

@@ -1,0 +1,34 @@
+<div class="episode-list">
+<table mat-table [dataSource]="episodes">
+  <ng-container matColumnDef="title_episode">
+    <th mat-header-cell *matHeaderCellDef><h3>Title</h3></th>
+    <td mat-cell *matCellDef="let episode">{{episode.title_episode}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="genre">
+    <th mat-header-cell *matHeaderCellDef><h3>Genre</h3></th>
+    <td mat-cell *matCellDef="let episode">{{genreService.genreNames[episode.genre]}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="series">
+    <th mat-header-cell *matHeaderCellDef><h3>Series</h3></th>
+    <td mat-cell *matCellDef="let episode">{{episode.series}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef><h3>Author</h3></th>
+    <td mat-cell *matCellDef="let episode">{{episode.author}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef><h3>Actions</h3></th>
+    <td mat-cell *matCellDef="let episode">
+      <button mat-button [routerLink]="'/episode-form/' + episode.id">Edit</button>
+      <button mat-button (click)="deleteEpisode(episode)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>

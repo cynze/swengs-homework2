@@ -1,0 +1,33 @@
+<form [formGroup]="authorFormGroup" class="author-form">
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="First Name" formControlName="first_name">
+    <mat-hint align="end">First name of the author</mat-hint>
+    <mat-error *ngIf="authorFormGroup.controls.first_name.hasError('required')">First name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Last Name" formControlName="last_name">
+    <mat-hint align="end">Last name of the author</mat-hint>
+    <mat-error *ngIf="authorFormGroup.controls.last_name.hasError('required')">Last name is required</mat-error>
+  </mat-form-field>
+
+  <app-date placeholder="Birthday" formControlName="birthday" hint="Birthday of the author"
+            [required]="false"></app-date>
+<br>
+    <mat-radio-group placeholder="Gender" formControlName="gender">
+      <mat-radio-button [value]="gender.key" *ngFor="let gender of genderService.genderNames | keyvalue">{{gender.value}}</mat-radio-button>
+    </mat-radio-group>
+<br>
+  <mat-checkbox formControlName="alive">Alive</mat-checkbox>
+  <br>
+
+
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!authorFormGroup.valid" (click)="createAuthor()">
+      <span *ngIf="!authorFormGroup.controls.id.value">Create</span>
+      <span *ngIf="authorFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+
+</form>

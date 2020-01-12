@@ -1,0 +1,56 @@
+<form [formGroup]="episodeFormGroup" class="episode-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title" formControlName="title_episode">
+    <mat-hint align="end">The title of the episode</mat-hint>
+    <mat-error *ngIf="episodeFormGroup.controls.title_episode.hasError('badWord')">Title contains "bad word"</mat-error>
+    <mat-error *ngIf="episodeFormGroup.controls.title_episode.hasError('required')">Title is required</mat-error>
+    <!--<mat-error *ngIf="episodeFormGroup.controls.title_episode.hasError('titleAlreadyExists')">Title already exists</mat-error>-->
+
+  </mat-form-field>
+
+  <app-date placeholder="Release date" formControlName="release_date" hint="The release date of the episode"
+            [required]="true"></app-date>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Season" formControlName="season">
+    <mat-hint align="end">The season of the episode</mat-hint>
+    <mat-error *ngIf="episodeFormGroup.controls.season.hasError('max')"> Season is too high</mat-error>
+  </mat-form-field>
+  <mat-checkbox formControlName="black_and_white">Black and white</mat-checkbox>
+  <br/>
+  <mat-form-field>
+    <mat-select placeholder="Genre" formControlName="genre">
+      <mat-option [value]="genre.key" *ngFor="let genre of genreService.genreNames | keyvalue">{{genre.value}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The genre of the episode</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder={{age}} readonly>
+    <mat-hint align="end">The age of the episode</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Series" formControlName="series">
+      <mat-option [value]="null">Unknown</mat-option>
+      <mat-option [value]="seriesOption.id" *ngFor="let seriesOption of seriesOptions">{{seriesOption.title_series}}</mat-option></mat-select>
+    <mat-hint align="end">The series of the episode</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Author" formControlName="author" multiple>
+      <mat-option [value]="null">Unknown</mat-option>
+      <mat-option [value]="authorOption.id" *ngFor="let authorOption of authorOptions">{{authorOption.last_name}}</mat-option></mat-select>
+    <mat-hint align="end">The author/s of the episode</mat-hint>
+  </mat-form-field>
+    <div>
+    Rating
+    <bar-rating matInput formControlName="rate" [max]="5"></bar-rating>
+    </div>
+  <br/>
+
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!episodeFormGroup.valid" (click)="createEpisode()">
+      <span *ngIf="!episodeFormGroup.controls.id.value">Create</span>
+      <span *ngIf="episodeFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+
+</form>

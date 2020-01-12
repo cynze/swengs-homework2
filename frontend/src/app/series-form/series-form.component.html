@@ -1,0 +1,38 @@
+<form [formGroup]="seriesFormGroup" class="series-form">
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title Series" formControlName="title_series">
+    <mat-hint align="end">Title  of the series</mat-hint>
+    <mat-error *ngIf="seriesFormGroup.controls.title_series.hasError('required')">Title name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Start Year" formControlName="start_year">
+    <mat-hint align="end">Start year of the series</mat-hint>
+    <mat-error *ngIf="seriesFormGroup.controls.start_year.hasError('required')">Start year is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="End Year" formControlName="end_year">
+    <mat-hint align="end">End year of the series</mat-hint>
+    <mat-error *ngIf="seriesFormGroup.controls.end_year.hasError('required')">End year is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Producer" formControlName="producer">
+    <mat-hint align="end">Producer of the series</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Style" formControlName="style">
+    <mat-hint align="end">Style of the series</mat-hint>
+  </mat-form-field>
+
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!seriesFormGroup.valid" (click)="createSeries()">
+      <span *ngIf="!seriesFormGroup.controls.id.value">Create</span>
+      <span *ngIf="seriesFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+
+</form>

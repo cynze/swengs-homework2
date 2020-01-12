@@ -1,0 +1,31 @@
+<mat-toolbar>
+  <button mat-button
+          [matMenuTriggerFor]="start">Start</button>
+
+  <mat-menu #start="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="episode">Episode</button>
+    <button mat-menu-item [matMenuTriggerFor]="author">Author</button>
+    <button mat-menu-item [matMenuTriggerFor]="series">Series</button>
+  </mat-menu>
+
+  <mat-menu #episode="matMenu">
+    <button mat-menu-item routerLink="episode-list">List Episodes</button>
+    <button mat-menu-item routerLink="episode-form">Create Episode</button>
+  </mat-menu>
+
+  <mat-menu #author="matMenu">
+    <button mat-menu-item routerLink="author-list">List Author</button>
+    <button mat-menu-item routerLink="author-form">Create Author</button>
+  </mat-menu>
+
+  <mat-menu #series="matMenu">
+    <button mat-menu-item routerLink="series-list">List Series</button>
+    <button mat-menu-item routerLink="series-form">Create Series</button>
+  </mat-menu>
+
+  <button mat-button routerLink="calendar">Calendar</button>
+
+  <app-logout *ngIf="isLoggedIn"></app-logout>
+
+</mat-toolbar>
+<router-outlet></router-outlet>
